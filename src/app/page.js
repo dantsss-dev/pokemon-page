@@ -4,6 +4,7 @@ import { PokeCard } from "../components/PokeCard/PokeCard";
 import { ModalPokeDetails } from "../components/PokeCard/ModalPokeDetails";
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
+  const [pokemonDetails, setPokemonDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
@@ -21,12 +22,23 @@ export default function Home() {
     } catch (error) {}
   };
 
+  const onRequestPokemonDetails = async (url) => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+      });
+      const responseParsed = await response.json();
+      setPokemonDetails(responseParsed);
+      setShowModal(true);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     onRequestPokemons();
   }, []);
 
   return (
-    <div className="content-center">
+    <div>
       {isLoading ? (
         <div className="border border-gray-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
           <div className="animate-pulse flex space-x-4">
@@ -41,43 +53,23 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="flex content-center flex-wrap bg-gray-200">
+        <div className="flex flex-wrap bg-gray-200">
           {pokemons.map((pokemon, index) => (
-            <PokeCard key={index} {...pokemon} index={index} />
-
-            // <div key={`${pokemon.name}-${index}`} className="w-1/3 p-2">
-            //   <div className="max-w-sm mx-auto rounded shadow-lg text-gray-700 text-center bg-gray-100 px-4">
-            //     <div className="flex pt-4">
-            //       <img
-            //         className="w-1/2 rounded-l-lg border border-gray-700 bg-white"
-            //         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-            //           index + 1
-            //         }.png`}
-            //         alt="Pokemon"
-            //       />
-            //       <img
-            //         className="w-1/2 -ml-1 rounded-r-lg border border-gray-700 bg-white"
-            //         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${
-            //           index + 1
-            //         }.png`}
-            //         alt="Pokemon back"
-            //       />
-            //     </div>
-            //     <div className="flex items-center px-6 py-4">
-            //       <div className="w-3/4 font-bold text-xl capitalize">
-            //         {`${pokemon.name} - #${String(index + 1).padStart(3, 0)}`}
-            //       </div>
-            //       <button
-            //         className="w-1/4 transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-700 hover:border-transparent rounded"
-            //         onClick={() => setShowModal(true)}
-            //       >
-            //         More
-            //       </button>
-            //     </div>
-            //   </div>
-            // </div>
+            <PokeCard
+              key={index}
+              {...pokemon}
+              index={index}
+              onRequestPokemonDetails={onRequestPokemonDetails}
+            />
           ))}
         </div>
+      )}
+      {showModal && (
+        <ModalPokeDetails
+          key={pokemonDetails.id}
+          {...pokemonDetails}
+          setShowModal={setShowModal}
+        />
       )}
     </div>
   );
