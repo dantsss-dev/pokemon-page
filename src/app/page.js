@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import { PokeCards } from "../components/PokeCards/PokeCards";
+import { PokeCard } from "../components/PokeCard/PokeCard";
+import { ModalPokeDetails } from "../components/PokeCard/ModalPokeDetails";
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const onRequestPokemons = async () => {
     try {
@@ -41,7 +43,7 @@ export default function Home() {
       ) : (
         <div className="flex content-center flex-wrap bg-gray-200">
           {pokemons.map((pokemon, index) => (
-            <PokeCards key={index} {...pokemon} />
+            <PokeCard key={index} {...pokemon} index={index} />
 
             // <div key={`${pokemon.name}-${index}`} className="w-1/3 p-2">
             //   <div className="max-w-sm mx-auto rounded shadow-lg text-gray-700 text-center bg-gray-100 px-4">
@@ -65,7 +67,10 @@ export default function Home() {
             //       <div className="w-3/4 font-bold text-xl capitalize">
             //         {`${pokemon.name} - #${String(index + 1).padStart(3, 0)}`}
             //       </div>
-            //       <button className="w-1/4 transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-700 hover:border-transparent rounded">
+            //       <button
+            //         className="w-1/4 transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-700 hover:border-transparent rounded"
+            //         onClick={() => setShowModal(true)}
+            //       >
             //         More
             //       </button>
             //     </div>

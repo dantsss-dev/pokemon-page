@@ -1,4 +1,4 @@
-export const PokeCards = ({ name, index }) => {
+export const PokeCard = ({ name, index }) => {
   <div className="w-1/3 p-2">
     <div className="max-w-sm mx-auto rounded shadow-lg text-gray-700 text-center bg-gray-100 px-4">
       <div className="flex pt-4">
