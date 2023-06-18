@@ -1,14 +1,18 @@
 "use client";
 import { useState, useEffect } from "react";
+import { PokeCards } from "../components/PokeCards/PokeCards";
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const onRequestPokemons = async () => {
     try {
-      const response = await fetch("https://pokeapi.co/api/v2/pokemon", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0",
+        {
+          method: "GET",
+        }
+      );
       const responseParsed = await response.json();
       setPokemons(responseParsed.results);
       setIsLoading(false);
@@ -20,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container mx-auto">
+    <div className="content-center">
       {isLoading ? (
         <div className="border border-gray-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
           <div className="animate-pulse flex space-x-4">
@@ -35,21 +39,38 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="container">
+        <div className="flex content-center flex-wrap bg-gray-200">
           {pokemons.map((pokemon, index) => (
-            <div key={`${pokemon.name}-${index}`}>
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                  index + 1
-                }.png`}
-              />
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${
-                  index + 1
-                }.png`}
-              />
-              <h2>{pokemon.name}</h2>
-            </div>
+            <PokeCards key={index} {...pokemon} />
+
+            // <div key={`${pokemon.name}-${index}`} className="w-1/3 p-2">
+            //   <div className="max-w-sm mx-auto rounded shadow-lg text-gray-700 text-center bg-gray-100 px-4">
+            //     <div className="flex pt-4">
+            //       <img
+            //         className="w-1/2 rounded-l-lg border border-gray-700 bg-white"
+            //         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+            //           index + 1
+            //         }.png`}
+            //         alt="Pokemon"
+            //       />
+            //       <img
+            //         className="w-1/2 -ml-1 rounded-r-lg border border-gray-700 bg-white"
+            //         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${
+            //           index + 1
+            //         }.png`}
+            //         alt="Pokemon back"
+            //       />
+            //     </div>
+            //     <div className="flex items-center px-6 py-4">
+            //       <div className="w-3/4 font-bold text-xl capitalize">
+            //         {`${pokemon.name} - #${String(index + 1).padStart(3, 0)}`}
+            //       </div>
+            //       <button className="w-1/4 transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-700 hover:border-transparent rounded">
+            //         More
+            //       </button>
+            //     </div>
+            //   </div>
+            // </div>
           ))}
         </div>
       )}
