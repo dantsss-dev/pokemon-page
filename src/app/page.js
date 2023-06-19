@@ -50,7 +50,7 @@ export default function Home() {
 
   const getPokemonTypeColor = (type) => {
     const color = colors[type];
-    return { color: "#ffffff", backgroundColor: color };
+    return { color: "#ffffff", backgroundColor: color, borderColor: "#ffffff" };
   };
 
   useEffect(() => {
