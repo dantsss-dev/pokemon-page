@@ -16,7 +16,7 @@ export default function Home() {
   const onRequestPokemons = async () => {
     try {
       const response = await fetch(
-        "https://pokeapi.co/api/v2/pokeon?limit=30&offset=0",
+        "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0",
         {
           method: "GET",
         }
