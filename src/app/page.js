@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { PokeCard } from "../components/PokeCard/PokeCard";
 import { ModalPokeDetails } from "../components/PokeCard/ModalPokeDetails";
+import { colors } from "../utils/validations/pokemon-type-colours";
+
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonDetails, setPokemonDetails] = useState([]);
@@ -31,6 +33,11 @@ export default function Home() {
       setPokemonDetails(responseParsed);
       setShowModal(true);
     } catch (error) {}
+  };
+
+  const getPokemonTypeColor = (type) => {
+    const color = colors[type];
+    return { color: "#ffffff", backgroundColor: color };
   };
 
   useEffect(() => {
@@ -69,6 +76,7 @@ export default function Home() {
           key={pokemonDetails.id}
           {...pokemonDetails}
           setShowModal={setShowModal}
+          getPokemonTypeColor={getPokemonTypeColor}
         />
       )}
     </div>
