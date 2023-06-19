@@ -9,6 +9,7 @@ export default function Home() {
   const [pokemonDetails, setPokemonDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [morePokemons, setMorePokemons] = useState(null);
 
   const onRequestPokemons = async () => {
     try {
@@ -20,7 +21,19 @@ export default function Home() {
       );
       const responseParsed = await response.json();
       setPokemons(responseParsed.results);
+      setMorePokemons(responseParsed.next);
       setIsLoading(false);
+    } catch (error) {}
+  };
+
+  const onRequestMorePokemons = async (url) => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+      });
+      const responseParsed = await response.json();
+      setPokemons([...pokemons, ...responseParsed.results]);
+      setMorePokemons(responseParsed.next);
     } catch (error) {}
   };
 
@@ -60,15 +73,29 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-wrap bg-gray-200">
-          {pokemons.map((pokemon, index) => (
-            <PokeCard
-              key={index}
-              {...pokemon}
-              index={index}
-              onRequestPokemonDetails={onRequestPokemonDetails}
-            />
-          ))}
+        <div className="bg-gray-200">
+          <div className="flex flex-wrap">
+            {pokemons.map((pokemon, index) => (
+              <PokeCard
+                key={index}
+                {...pokemon}
+                index={index}
+                onRequestPokemonDetails={onRequestPokemonDetails}
+              />
+            ))}
+          </div>
+          <div className="flex py-8 justify-center">
+            <div className="w-full sm:w-1/3 p-2 flex justify-center">
+              <button
+                className="max-w-sm container mx-auto py-2 px-4  shadow-lg transition duration-500 ease-out bg-white hover:bg-gray-700 text-gray-700 font-semibold hover:text-white border border-gray-700 hover:border-transparent rounded "
+                onClick={() => {
+                  onRequestMorePokemons(morePokemons);
+                }}
+              >
+                Show More Pokemos
+              </button>
+            </div>
+          </div>
         </div>
       )}
       {showModal && (
