@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 import { PokeCard } from "../components/PokeCard/PokeCard";
 import { ModalPokeDetails } from "../components/PokeCard/ModalPokeDetails";
 import { SkeletonCard } from "../components/PokeCard/SkeletonCard";
-import { colors } from "../utils/validations/pokemon-type-colours";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonDetails, setPokemonDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [morePokemons, setMorePokemons] = useState(null);
+  const [urlToMorePokemons, setUrlToMorePokemons] = useState(null);
   const [isError, setIsError] = useState(false);
 
   const onRequestPokemons = async () => {
@@ -23,21 +22,22 @@ export default function Home() {
       );
       const responseParsed = await response.json();
       setPokemons(responseParsed.results);
-      setMorePokemons(responseParsed.next);
+      setUrlToMorePokemons(responseParsed.next);
       setIsLoading(false);
     } catch (error) {
       setIsError(true);
     }
   };
 
-  const onRequestMorePokemons = async (url) => {
+  const onRequestMorePokemons = async () => {
     try {
-      const response = await fetch(url, {
+      const response = await fetch(urlToMorePokemons, {
         method: "GET",
       });
       const responseParsed = await response.json();
       setPokemons([...pokemons, ...responseParsed.results]);
-      setMorePokemons(responseParsed.next);
+      setUrlToMorePokemons(responseParsed.next);
+      setIsLoading(false);
     } catch (error) {
       setIsError(true);
     }
@@ -54,11 +54,6 @@ export default function Home() {
     } catch (error) {
       setIsError(true);
     }
-  };
-
-  const getPokemonTypeColor = (type) => {
-    const color = colors[type];
-    return { color: "#ffffff", backgroundColor: color, borderColor: "#ffffff" };
   };
 
   useEffect(() => {
@@ -100,10 +95,10 @@ export default function Home() {
                   <button
                     className="max-w-sm container mx-auto py-2 px-4  shadow-lg transition duration-500 ease-out bg-white hover:bg-gray-700 text-gray-700 font-semibold hover:text-white border border-gray-700 hover:border-transparent rounded "
                     onClick={() => {
-                      onRequestMorePokemons(morePokemons);
+                      onRequestMorePokemons(urlToMorePokemons);
                     }}
                   >
-                    Show More Pokemos
+                    Show More Pokemons
                   </button>
                 </div>
               </div>
@@ -114,7 +109,6 @@ export default function Home() {
               key={pokemonDetails.id}
               {...pokemonDetails}
               setShowModal={setShowModal}
-              getPokemonTypeColor={getPokemonTypeColor}
             />
           )}
         </div>

@@ -1,4 +1,4 @@
-const colours = {
+export const POKEMONTYPECOLORS = {
   normal: "#A8A77A",
   fire: "#EE8130",
   water: "#6390F0",
@@ -18,6 +18,3 @@ const colours = {
   steel: "#B7B7CE",
   fairy: "#D685AD",
 };
-
-module.exports = (type) => colours[type] || "#777";
-module.exports.colors = colours;
