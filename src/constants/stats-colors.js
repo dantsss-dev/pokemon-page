@@ -1,4 +1,4 @@
-export const STATSCOLORS = [
+export const STATS_COLORS = [
   { name: "HP", color: "#ff5959" },
   { name: "Atk", color: "#f5ac79" },
   { name: "Def", color: "#f9e079" },
