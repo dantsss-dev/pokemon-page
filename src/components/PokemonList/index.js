@@ -1,13 +1,10 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { PokeCard } from '../PokeCard/PokeCard';
-import { SkeletonCard } from '../PokeCard/SkeletonCard';
+import { SkeletonCard } from '../Skeleton/SkeletonCard';
 
 const PokemonList = () => {
 	const [pokemons, setPokemons] = useState([]);
-	const [pokemonDetails, setPokemonDetails] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [showModal, setShowModal] = useState(false);
 	const [urlToMorePokemons, setUrlToMorePokemons] = useState(null);
 	const [isError, setIsError] = useState(false);
 
