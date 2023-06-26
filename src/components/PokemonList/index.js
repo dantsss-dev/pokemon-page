@@ -1,10 +1,9 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { PokeCard } from '../components/PokeCard/PokeCard';
-import { ModalPokeDetails } from '../components/PokeCard/ModalPokeDetails';
-import { SkeletonCard } from '../components/PokeCard/SkeletonCard';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { PokeCard } from '../PokeCard/PokeCard';
+import { SkeletonCard } from '../PokeCard/SkeletonCard';
 
-export default function Home() {
+const PokemonList = () => {
 	const [pokemons, setPokemons] = useState([]);
 	const [pokemonDetails, setPokemonDetails] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -43,19 +42,6 @@ export default function Home() {
 		}
 	};
 
-	const onRequestPokemonDetails = async (url) => {
-		try {
-			const response = await fetch(url, {
-				method: 'GET',
-			});
-			const responseParsed = await response.json();
-			setPokemonDetails(responseParsed);
-			setShowModal(true);
-		} catch (error) {
-			setIsError(true);
-		}
-	};
-
 	useEffect(() => {
 		onRequestPokemons();
 	}, []);
@@ -82,12 +68,7 @@ export default function Home() {
 							</div>
 							<div className="flex flex-wrap">
 								{pokemons.map((pokemon, index) => (
-									<PokeCard
-										key={index}
-										{...pokemon}
-										index={index}
-										onRequestPokemonDetails={onRequestPokemonDetails}
-									/>
+									<PokeCard key={index} {...pokemon} index={index} />
 								))}
 							</div>
 							<div className="flex py-8 justify-center">
@@ -104,15 +85,10 @@ export default function Home() {
 							</div>
 						</div>
 					)}
-					{showModal && (
-						<ModalPokeDetails
-							key={pokemonDetails.id}
-							{...pokemonDetails}
-							setShowModal={setShowModal}
-						/>
-					)}
 				</div>
 			)}
 		</div>
 	);
-}
+};
+
+export default PokemonList;
