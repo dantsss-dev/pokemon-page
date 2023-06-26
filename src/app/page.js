@@ -1,18 +1,59 @@
 "use client";
 import { useState, useEffect } from "react";
+import { PokeCard } from "../components/PokeCard/PokeCard";
+import { ModalPokeDetails } from "../components/PokeCard/ModalPokeDetails";
+import { SkeletonCard } from "../components/PokeCard/SkeletonCard";
+
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
+  const [pokemonDetails, setPokemonDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [urlToMorePokemons, setUrlToMorePokemons] = useState(null);
+  const [isError, setIsError] = useState(false);
 
   const onRequestPokemons = async () => {
     try {
-      const response = await fetch("https://pokeapi.co/api/v2/pokemon", {
+      const response = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0",
+        {
+          method: "GET",
+        }
+      );
+      const responseParsed = await response.json();
+      setPokemons(responseParsed.results);
+      setUrlToMorePokemons(responseParsed.next);
+      setIsLoading(false);
+    } catch (error) {
+      setIsError(true);
+    }
+  };
+
+  const onRequestMorePokemons = async () => {
+    try {
+      const response = await fetch(urlToMorePokemons, {
         method: "GET",
       });
       const responseParsed = await response.json();
-      setPokemons(responseParsed.results);
+      setPokemons([...pokemons, ...responseParsed.results]);
+      setUrlToMorePokemons(responseParsed.next);
       setIsLoading(false);
-    } catch (error) {}
+    } catch (error) {
+      setIsError(true);
+    }
+  };
+
+  const onRequestPokemonDetails = async (url) => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+      });
+      const responseParsed = await response.json();
+      setPokemonDetails(responseParsed);
+      setShowModal(true);
+    } catch (error) {
+      setIsError(true);
+    }
   };
 
   useEffect(() => {
@@ -20,37 +61,56 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container mx-auto">
-      {isLoading ? (
-        <div className="border border-gray-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-          <div className="animate-pulse flex space-x-4">
-            <div className="rounded-full bg-gray-400 h-12 w-12"></div>
-            <div className="flex-1 space-y-4 py-1">
-              <div className="h-4 bg-gray-400 rounded w-3/4"></div>
-              <div className="space-y-2">
-                <div className="h-4 bg-gray-400 rounded"></div>
-                <div className="h-4 bg-gray-400 rounded w-5/6"></div>
-              </div>
-            </div>
-          </div>
+    <div>
+      {isError ? (
+        <div className="mt-24 flex justify-center items-center text-black font-bold text-center text-6xl">
+          <h1>THERE WAS A PROBLEM.</h1>
+          <h1>We are working on it.</h1>
         </div>
       ) : (
-        <div className="container">
-          {pokemons.map((pokemon, index) => (
-            <div key={`${pokemon.name}-${index}`}>
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                  index + 1
-                }.png`}
-              />
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${
-                  index + 1
-                }.png`}
-              />
-              <h2>{pokemon.name}</h2>
+        <div>
+          {isLoading ? (
+            <div className="flex flex-wrap justify-center items-center">
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
             </div>
-          ))}
+          ) : (
+            <div className="bg-gray-200">
+              <div className="w-full bg-red-500 text-center py-6 mb-8 text-gray-100">
+                <h1 className="text-3xl font-bold">Pokemon List</h1>
+              </div>
+              <div className="flex flex-wrap">
+                {pokemons.map((pokemon, index) => (
+                  <PokeCard
+                    key={index}
+                    {...pokemon}
+                    index={index}
+                    onRequestPokemonDetails={onRequestPokemonDetails}
+                  />
+                ))}
+              </div>
+              <div className="flex py-8 justify-center">
+                <div className="w-full sm:w-1/3 p-2 flex justify-center">
+                  <button
+                    className="max-w-sm container mx-auto py-2 px-4  shadow-lg transition duration-500 ease-out bg-white hover:bg-gray-700 text-gray-700 font-semibold hover:text-white border border-gray-700 hover:border-transparent rounded "
+                    onClick={() => {
+                      onRequestMorePokemons(urlToMorePokemons);
+                    }}
+                  >
+                    Show More Pokemons
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          {showModal && (
+            <ModalPokeDetails
+              key={pokemonDetails.id}
+              {...pokemonDetails}
+              setShowModal={setShowModal}
+            />
+          )}
         </div>
       )}
     </div>
