@@ -1,6 +1,6 @@
-import { POKEMONTYPECOLORS } from "../../constants/pokemon-type-colors";
-import { STATSCOLORS } from "../../constants/stats-colors";
 import { useState } from "react";
+import { POKEMON_TYPE_COLORS } from "../../constants/pokemon-type-colors";
+import { STATS_COLORS } from "../../constants/stats-colors";
 
 export const ModalPokeDetails = ({
   id,
@@ -23,7 +23,7 @@ export const ModalPokeDetails = ({
   const filteredMoves = filterMoves();
 
   const getPokemonTypeColor = (type) => {
-    const color = POKEMONTYPECOLORS[type];
+    const color = POKEMON_TYPE_COLORS[type];
     return { color: "#ffffff", backgroundColor: color, borderColor: "#ffffff" };
   };
 
@@ -59,9 +59,7 @@ export const ModalPokeDetails = ({
                 {sprites.front_shiny && (
                   <button
                     className=" w-full sm:w-1/2 items-center transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white container mx-auto py-2 border border-gray-700 hover:border-transparent rounded  "
-                    onClick={() => {
-                      showShiny ? setShowShiny(false) : setShowShiny(true);
-                    }}
+                    onClick={() => setShowShiny((prev) => !prev)}
                   >
                     See {showShiny ? "Normal" : "Shiny"}
                   </button>
@@ -113,14 +111,14 @@ export const ModalPokeDetails = ({
                       key={index}
                       className="w-1/3 px-2 pb-2 flex flex-wrap text-white border-white border-4 rounded-xl"
                       style={{
-                        backgroundColor: `${STATSCOLORS[index].color}`,
+                        backgroundColor: `${STATS_COLORS[index].color}`,
                       }}
                     >
                       <p className="w-full my-1 text-gray-700 text-xs font-semibold">
                         {current.base_stat}
                       </p>
                       <p className="w-full text-gray-700 text-xs font-semibold">
-                        {STATSCOLORS[index].name}
+                        {STATS_COLORS[index].name}
                       </p>
                     </div>
                   ))}
