@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { POKEMON_TYPE_COLORS } from "../../constants/pokemon-type-colors";
 import { STATS_COLORS } from "../../constants/stats-colors";
+import Link from "next/link";
 
 export const ModalPokeDetails = ({
   id,
@@ -11,7 +12,6 @@ export const ModalPokeDetails = ({
   stats,
   weight,
   sprites,
-  setShowModal,
 }) => {
   const [showShiny, setShowShiny] = useState(false);
   const filterMoves = () => {
@@ -32,14 +32,14 @@ export const ModalPokeDetails = ({
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="w-auto mx-auto max-w-6xl">
           <div className="mt-20 pb-8 border-0 rounded-lg shadow-lg flex flex-col w-full bg-white outline-none focus:outline-none">
-            <button
+            <Link
               className="mt-2 mr-2 p-3 bg-red-400 border-0 text-black float-right text-3xl leading-none font-semibold rounded-full shadow-lg outline-none focus:outline-none ml-auto hover:bg-red-500"
-              onClick={() => setShowModal(false)}
+              href={"/"}
             >
-              <span className="flex justify-center items-center bg-transparent text-white h-6 w-6 text-2xl block outline-none focus:outline-none">
-                X
+              <span className="flex justify-center items-center bg-transparent text-white text-2xl block outline-none focus:outline-none">
+                {"<-"} Go Back
               </span>
-            </button>
+            </Link>
             <div className="flex items-center justify-center rounded-t">
               <div className="flex flex-col justify-center w-full">
                 <div className="w-full mt-4 flex justify-center">
