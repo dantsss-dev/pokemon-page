@@ -1,5 +1,4 @@
 import HeadData from '@/components/HeadData'
-import './globals.css'
 
 const Home = () => {
   return (
