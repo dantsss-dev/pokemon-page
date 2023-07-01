@@ -2,8 +2,9 @@ import { useState } from "react";
 import { POKEMON_TYPE_COLORS } from "../../constants/pokemon-type-colors";
 import { STATS_COLORS } from "../../constants/stats-colors";
 import Link from "next/link";
+import Image from "next/legacy/image";
 
-export const ModalPokeDetails = ({
+export const PokemonDetails = ({
   id,
   name,
   height,
@@ -37,7 +38,7 @@ export const ModalPokeDetails = ({
               href={"/"}
             >
               <span className="flex justify-center items-center bg-transparent text-white text-2xl block outline-none focus:outline-none">
-                {"<-"} Go Back
+                Go Back
               </span>
             </Link>
             <div className="flex items-center justify-center rounded-t">
@@ -52,9 +53,25 @@ export const ModalPokeDetails = ({
             <div className="p-6 overflow-y-auto flex flex-col sm:flex-row justify-between items-center">
               <div className="w-full h-full sm:w-1/3 flex flex-col justify-center items-center">
                 {!showShiny ? (
-                  <img className="w-1/2" src={sprites.front_default} />
+                  <div className="w-1/2">
+                    <Image
+                      src={sprites.front_default}
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      alt="Normal"
+                    />
+                  </div>
                 ) : (
-                  <img className="w-1/2" src={sprites.front_shiny} />
+                  <div className="w-1/2">
+                    <Image
+                      src={sprites.front_shiny}
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      alt="Shiny"
+                    />
+                  </div>
                 )}
                 {sprites.front_shiny && (
                   <button

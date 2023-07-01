@@ -1,9 +1,8 @@
-"use client";
 import { useState, useEffect } from "react";
-import { PokeCard } from "../components/PokeCard/PokeCard";
-import { SkeletonCard } from "../components/SkeletonCard/SkeletonCard";
+import { PokeCard } from "@/components/PokeCard/PokeCard";
+import { SkeletonCard } from "@/components/SkeletonCard/SkeletonCard";
 
-export default function Home() {
+export default function PokemonList() {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [urlToMorePokemons, setUrlToMorePokemons] = useState(null);
@@ -37,6 +36,7 @@ export default function Home() {
       setIsLoading(false);
     } catch (error) {
       setIsError(true);
+      setIsLoading(false);
     }
   };
 
