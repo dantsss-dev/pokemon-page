@@ -1,12 +1,19 @@
+import { useCallback, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 import { SkeletonCard } from '@/components/Skeleton/SkeletonCard'
 import { POKEMON_TYPE_COLORS } from '@/constants/pokemon-type-colors'
-import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
 
 const PokemonDetail = () => {
   const [types, setTypes] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
+  const { userName } = useSelector(({ user }) => {
+    const userName = `${user.name} ${user.last_name}`
+    return {
+      userName,
+    }
+  })
 
   const onGetPokemonDetail = useCallback(async () => {
     try {
@@ -36,7 +43,8 @@ const PokemonDetail = () => {
       {isLoading ? (
         <SkeletonCard />
       ) : (
-        <div className="w-full flex flex-wrap justify-center">
+        <div onClick={() => router.back()} className="w-full flex flex-wrap justify-center">
+          <h2 className="text-white">{userName}</h2>
           {types.map((value, index) => (
             <p
               key={index}
