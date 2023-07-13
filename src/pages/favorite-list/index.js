@@ -36,7 +36,7 @@ export default function FavoritePokemon() {
               You have no Favorite Pokemons Added to your List
             </p>
             <p className="w-full text-xl text-gray-400 pb-4">
-              Try checking out the pokedex to add your favorite pokemons
+              Try checking out the pokedex to add your favorites pokemon
             </p>
             <Link
               className="md:w-auto px-4 items-center transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white container mx-4 py-2 border border-gray-700 hover:border-transparent rounded "

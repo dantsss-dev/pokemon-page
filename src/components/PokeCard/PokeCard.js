@@ -7,7 +7,7 @@ import { favoritesPokemonSelector } from '@/store/favorites'
 import ModalPokemonNickname from '../ModalPokemonNickname/ModalPokemonNickname'
 
 export const PokeCard = ({ name, index, showNickname }) => {
-  const [isAddToFavorite, setIsAddToFavorite] = useState('')
+  const [isAddToFavorites, setIsAddToFavorites] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const dispatch = useDispatch()
   const favPokemon = useSelector(favoritesPokemonSelector)
@@ -20,12 +20,12 @@ export const PokeCard = ({ name, index, showNickname }) => {
     setIsModalOpen(false)
   }
 
-  const handleFavoritePokemon = () => {
+  const handleFavoritesPokemon = () => {
     const value = favPokemon.find((element) => element.id === index)
-    value && setIsAddToFavorite(value.nickname)
+    value && setIsAddToFavorites(value.nickname)
   }
 
-  const onRemoveFavoritePokemon = () => {
+  const onRemoveFavoritesPokemon = () => {
     dispatch(
       onRemovePokemonFromFavorites({
         id: index,
@@ -34,7 +34,7 @@ export const PokeCard = ({ name, index, showNickname }) => {
   }
 
   useEffect(() => {
-    handleFavoritePokemon()
+    handleFavoritesPokemon()
   }, [favPokemon])
 
   return (
@@ -42,7 +42,7 @@ export const PokeCard = ({ name, index, showNickname }) => {
       <div className="max-w-sm mx-auto h-full rounded shadow-lg text-gray-700 text-center bg-gray-100 px-4">
         {showNickname && (
           <div className="flex text-center justify-center text-2xl font-semibold capitalize py-6">
-            {isAddToFavorite}
+            {isAddToFavorites}
           </div>
         )}
 
@@ -71,11 +71,12 @@ export const PokeCard = ({ name, index, showNickname }) => {
           </div>
         </div>
         <div className="flex flex-wrap items-center text-center justify-center px-1 py-4">
-          {isAddToFavorite ? (
+          {isAddToFavorites ? (
             <button
-              className="w-full py-3 lg:w-auto lg:px-4 lg:py-3 border border-gray-700 rounded-md transition duration-500 ease-out hover:bg-gray-700 hover:border-transparent"
-              onClick={onRemoveFavoritePokemon}
+              className="w-full py-3 lg:w-auto lg:px-4 lg:py-3 flex flex-wrap justify-center font-semibold border border-gray-700 rounded-md transition duration-500 ease-out hover:bg-gray-700 hover:border-transparent hover:text-white"
+              onClick={onRemoveFavoritesPokemon}
             >
+              <div className="lg:hidden mr-2">Remove from favorites</div>
               <Image
                 src={require('../../assets/png/star-filled.png')}
                 alt="star"
@@ -85,9 +86,10 @@ export const PokeCard = ({ name, index, showNickname }) => {
             </button>
           ) : (
             <button
-              className="w-full py-3 lg:w-auto lg:px-4 lg:py-3 border border-gray-700 rounded-md transition duration-500 ease-out hover:bg-gray-700 hover:border-transparent"
+              className="w-full py-3 lg:w-auto lg:px-4 lg:py-3 flex flex-wrap justify-center font-semibold border border-gray-700 rounded-md transition duration-500 ease-out hover:bg-gray-700 hover:border-transparent hover:text-white"
               onClick={openModal}
             >
+              <div className="sm:hidden mr-2">Add to favorites</div>
               <Image
                 src={require('../../assets/png/star-outline.png')}
                 alt="star"
