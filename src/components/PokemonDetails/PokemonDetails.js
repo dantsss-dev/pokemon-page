@@ -1,51 +1,43 @@
-import { useState } from "react";
-import { POKEMON_TYPE_COLORS } from "../../constants/pokemon-type-colors";
-import { STATS_COLORS } from "../../constants/stats-colors";
-import Link from "next/link";
-import Image from "next/legacy/image";
+import { useState } from 'react'
+import { POKEMON_TYPE_COLORS } from '../../constants/pokemon-type-colors'
+import { STATS_COLORS } from '../../constants/stats-colors'
+import { useRouter } from 'next/router'
+import Image from 'next/legacy/image'
 
-export const PokemonDetails = ({
-  id,
-  name,
-  height,
-  moves,
-  types,
-  stats,
-  weight,
-  sprites,
-}) => {
-  const [showShiny, setShowShiny] = useState(false);
+export const PokemonDetails = ({ id, name, height, moves, types, stats, weight, sprites }) => {
+  const router = useRouter()
+  const [showShiny, setShowShiny] = useState(false)
   const filterMoves = () => {
     const newMoves = moves.map((current, index) => ({
       move: current.move.name,
-    }));
-    return newMoves.sort(() => Math.random() - 0.5).slice(0, 4);
-  };
-  const filteredMoves = filterMoves();
+    }))
+    return newMoves.sort(() => Math.random() - 0.5).slice(0, 4)
+  }
+  const filteredMoves = filterMoves()
 
   const getPokemonTypeColor = (type) => {
-    const color = POKEMON_TYPE_COLORS[type];
-    return { color: "#ffffff", backgroundColor: color, borderColor: "#ffffff" };
-  };
+    const color = POKEMON_TYPE_COLORS[type]
+    return { color: '#ffffff', backgroundColor: color, borderColor: '#ffffff' }
+  }
 
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="w-auto mx-auto max-w-6xl">
           <div className="mt-20 pb-8 border-0 rounded-lg shadow-lg flex flex-col w-full bg-white outline-none focus:outline-none">
-            <Link
+            <button
               className="mt-2 mr-2 p-3 bg-red-400 border-0 text-black float-right text-3xl leading-none font-semibold rounded-full shadow-lg outline-none focus:outline-none ml-auto hover:bg-red-500"
-              href={"/"}
+              onClick={() => router.back()}
             >
               <span className="flex justify-center items-center bg-transparent text-white text-2xl block outline-none focus:outline-none">
                 Go Back
               </span>
-            </Link>
+            </button>
             <div className="flex items-center justify-center rounded-t">
               <div className="flex flex-col justify-center w-full">
                 <div className="w-full mt-4 flex justify-center">
                   <h3 className="text-2xl font-semibold capitalize">{`${name} - #${String(
-                    id
+                    id,
                   ).padStart(3, 0)}`}</h3>
                 </div>
               </div>
@@ -78,7 +70,7 @@ export const PokemonDetails = ({
                     className=" w-full sm:w-1/2 items-center transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white container mx-auto py-2 border border-gray-700 hover:border-transparent rounded  "
                     onClick={() => setShowShiny((prev) => !prev)}
                   >
-                    See {showShiny ? "Normal" : "Shiny"}
+                    See {showShiny ? 'Normal' : 'Shiny'}
                   </button>
                 )}
               </div>
@@ -147,5 +139,5 @@ export const PokemonDetails = ({
       </div>
       <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
     </>
-  );
-};
+  )
+}
