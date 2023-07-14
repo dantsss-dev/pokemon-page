@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { PokeCard } from '@/components/PokeCard/PokeCard'
 import { SkeletonCard } from '@/components/SkeletonCard/SkeletonCard'
-import { onSetUserDetail, userSelector } from '@/store/user'
+import { onSetUserDetail } from '@/store/user'
+import { userSelector } from '@/store/user/selectors'
 import Link from 'next/link'
 
 export default function PokemonList() {
@@ -45,8 +46,8 @@ export default function PokemonList() {
   const onSetName = () => {
     dispatch(
       onSetUserDetail({
-        name: 'Eliseo',
-        last_name: 'Palacios',
+        name: 'Antonio',
+        last_name: 'Macall',
       }),
     )
   }
@@ -57,7 +58,6 @@ export default function PokemonList() {
 
   useEffect(() => {
     onSetName()
-    console.log(userName)
   }, [userName])
 
   return (

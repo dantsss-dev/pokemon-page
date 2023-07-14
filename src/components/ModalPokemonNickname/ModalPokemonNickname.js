@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { favoritesPokemonSelector } from '@/store/favorites'
+import { favoritesPokemonSelector } from '@/store/favorites/selectors'
 import { onAddPokemonToFavorites } from '@/store/favorites'
 import { hasValidateNickname } from '@/utils/validations/validations'
 

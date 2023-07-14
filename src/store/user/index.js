@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   name: '',
@@ -15,12 +15,6 @@ const userSlice = createSlice({
     },
   },
 })
-
-const userSliceSelector = (state) => state.user
-export const userSelector = createSelector(userSliceSelector, (user) => ({
-  name: user.name,
-  last_name: user.last_name,
-}))
 
 export const { onSetUserDetail } = userSlice.actions
 export default userSlice.reducer

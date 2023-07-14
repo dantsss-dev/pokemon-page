@@ -3,7 +3,7 @@ import Image from 'next/legacy/image'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { onRemovePokemonFromFavorites } from '@/store/favorites'
-import { favoritesPokemonSelector } from '@/store/favorites'
+import { favoritesPokemonSelector } from '@/store/favorites/selectors'
 import ModalPokemonNickname from '../ModalPokemonNickname/ModalPokemonNickname'
 
 export const PokeCard = ({ name, index, showNickname }) => {
@@ -31,6 +31,7 @@ export const PokeCard = ({ name, index, showNickname }) => {
         id: index,
       }),
     )
+    setIsAddToFavorites(false)
   }
 
   useEffect(() => {
@@ -112,9 +113,7 @@ export const PokeCard = ({ name, index, showNickname }) => {
           </Link>
         </div>
       </div>
-      {isModalOpen && (
-        <ModalPokemonNickname key={index} name={name} id={index} closeModal={closeModal} />
-      )}
+      {isModalOpen && <ModalPokemonNickname name={name} id={index} closeModal={closeModal} />}
     </div>
   )
 }

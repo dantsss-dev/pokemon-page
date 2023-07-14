@@ -19,11 +19,5 @@ const favoritesSlice = createSlice({
   },
 })
 
-const favoritesSliceSelector = (state) => state.favorites
-export const favoritesPokemonSelector = createSelector(
-  favoritesSliceSelector,
-  (favorites) => favorites.favoritesPokemon,
-)
-
 export const { onAddPokemonToFavorites, onRemovePokemonFromFavorites } = favoritesSlice.actions
 export default favoritesSlice.reducer

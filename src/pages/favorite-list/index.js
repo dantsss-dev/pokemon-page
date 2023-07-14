@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { PokeCard } from '@/components/PokeCard/PokeCard'
-import { favoritesPokemonSelector } from '@/store/favorites'
+import { favoritesPokemonSelector } from '@/store/favorites/selectors'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
