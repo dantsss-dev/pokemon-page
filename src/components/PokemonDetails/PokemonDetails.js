@@ -1,31 +1,24 @@
-import { useState } from "react";
-import { POKEMON_TYPE_COLORS } from "../../constants/pokemon-type-colors";
-import { STATS_COLORS } from "../../constants/stats-colors";
+import { useState } from 'react'
+import { POKEMON_TYPE_COLORS } from '../../constants/pokemon-type-colors'
+import { STATS_COLORS } from '../../constants/stats-colors'
+import { useRouter } from 'next/router'
+import Image from 'next/legacy/image'
 
-export const ModalPokeDetails = ({
-  id,
-  name,
-  height,
-  moves,
-  types,
-  stats,
-  weight,
-  sprites,
-  setShowModal,
-}) => {
-  const [showShiny, setShowShiny] = useState(false);
+export const PokemonDetails = ({ id, name, height, moves, types, stats, weight, sprites }) => {
+  const router = useRouter()
+  const [showShiny, setShowShiny] = useState(false)
   const filterMoves = () => {
     const newMoves = moves.map((current, index) => ({
       move: current.move.name,
-    }));
-    return newMoves.sort(() => Math.random() - 0.5).slice(0, 4);
-  };
-  const filteredMoves = filterMoves();
+    }))
+    return newMoves.sort(() => Math.random() - 0.5).slice(0, 4)
+  }
+  const filteredMoves = filterMoves()
 
   const getPokemonTypeColor = (type) => {
-    const color = POKEMON_TYPE_COLORS[type];
-    return { color: "#ffffff", backgroundColor: color, borderColor: "#ffffff" };
-  };
+    const color = POKEMON_TYPE_COLORS[type]
+    return { color: '#ffffff', backgroundColor: color, borderColor: '#ffffff' }
+  }
 
   return (
     <>
@@ -34,17 +27,17 @@ export const ModalPokeDetails = ({
           <div className="mt-20 pb-8 border-0 rounded-lg shadow-lg flex flex-col w-full bg-white outline-none focus:outline-none">
             <button
               className="mt-2 mr-2 p-3 bg-red-400 border-0 text-black float-right text-3xl leading-none font-semibold rounded-full shadow-lg outline-none focus:outline-none ml-auto hover:bg-red-500"
-              onClick={() => setShowModal(false)}
+              onClick={() => router.back()}
             >
-              <span className="flex justify-center items-center bg-transparent text-white h-6 w-6 text-2xl block outline-none focus:outline-none">
-                X
+              <span className="flex justify-center items-center bg-transparent text-white text-2xl block outline-none focus:outline-none">
+                Go Back
               </span>
             </button>
             <div className="flex items-center justify-center rounded-t">
               <div className="flex flex-col justify-center w-full">
                 <div className="w-full mt-4 flex justify-center">
                   <h3 className="text-2xl font-semibold capitalize">{`${name} - #${String(
-                    id
+                    id,
                   ).padStart(3, 0)}`}</h3>
                 </div>
               </div>
@@ -52,16 +45,32 @@ export const ModalPokeDetails = ({
             <div className="p-6 overflow-y-auto flex flex-col sm:flex-row justify-between items-center">
               <div className="w-full h-full sm:w-1/3 flex flex-col justify-center items-center">
                 {!showShiny ? (
-                  <img className="w-1/2" src={sprites.front_default} />
+                  <div className="w-1/2">
+                    <Image
+                      src={sprites.front_default}
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      alt="Normal"
+                    />
+                  </div>
                 ) : (
-                  <img className="w-1/2" src={sprites.front_shiny} />
+                  <div className="w-1/2">
+                    <Image
+                      src={sprites.front_shiny}
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      alt="Shiny"
+                    />
+                  </div>
                 )}
                 {sprites.front_shiny && (
                   <button
                     className=" w-full sm:w-1/2 items-center transition duration-500 ease-out bg-transparent hover:bg-gray-700 text-gray-700 font-semibold hover:text-white container mx-auto py-2 border border-gray-700 hover:border-transparent rounded  "
                     onClick={() => setShowShiny((prev) => !prev)}
                   >
-                    See {showShiny ? "Normal" : "Shiny"}
+                    See {showShiny ? 'Normal' : 'Shiny'}
                   </button>
                 )}
               </div>
@@ -130,5 +139,5 @@ export const ModalPokeDetails = ({
       </div>
       <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
     </>
-  );
-};
+  )
+}

@@ -1,30 +1,14 @@
-export const hasValidateAdd = (tasks, title, description) => {
-  if (title.trim() !== "" && description.trim() !== "") {
-    const taskExists = tasks.find(
-      (task) => task.title.toLowerCase() === title.toLowerCase()
-    );
-    if (!taskExists) {
-      return true;
+export const hasValidateNickname = (nickname, favPokemon) => {
+  if (nickname.trim() !== '') {
+    const nicknameExists = favPokemon.find(
+      (pokemon) => pokemon.nickname.toLowerCase() === nickname.toLowerCase(),
+    )
+    if (!nicknameExists) {
+      return true
     } else {
-      alert("Task already exist.");
+      alert(`Nickname is already take by ${nicknameExists.name}`)
     }
   } else {
-    alert("Fill the information.");
+    alert('Fill the information.')
   }
-};
-
-export const hasValidateEdit = (tasks, title, description, id) => {
-  if (title.trim() !== "" && description.trim() !== "") {
-    const taskExists = tasks.find(
-      (task) =>
-        task.title.toLowerCase() === title.toLowerCase() && task.id !== id
-    );
-    if (!taskExists) {
-      return true;
-    } else {
-      alert("Task already exist.");
-    }
-  } else {
-    alert("Fill the information.");
-  }
-};
+}
