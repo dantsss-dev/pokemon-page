@@ -1,0 +1,60 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.yellow-gradient {
+  @apply bg-gradient-to-b from-[#f5db13] to-[#f2b807];
+}
+
+.home-container {
+  @apply yellow-gradient h-screen;
+}
+
+.home-content {
+  @apply flex flex-col-reverse justify-center items-center mt-11;
+  @screen tablet {
+    @apply mt-5;
+  }
+  @screen desktop {
+    @apply flex-row items-start mt-16;
+  }
+}
+
+.text-banner-container {
+  @apply flex flex-col text-center gap-8 items-center;
+  @screen tablet {
+    @apply px-[20px];
+  }
+  @screen desktop {
+    @apply max-w-lg text-left gap-16 items-start;
+  }
+}
+
+.title-banner {
+  @apply text-[42px] font-bold px-[20px];
+  @screen tablet {
+    @apply text-7xl px-2;
+  }
+}
+
+.subtitle-banner {
+  @apply text-[24px] leading-normal px-[20px];
+  @screen tablet {
+    @apply text-2xl px-[45px];
+  }
+  @screen desktop {
+    @apply text-[32px] px-0;
+  }
+}
+
+.image-banner {
+  @screen mobile {
+    @apply w-[375px];
+  }
+  @screen tablet {
+    @apply w-[706px];
+  }
+  @screen desktop {
+    @apply w-[820px];
+  }
+}

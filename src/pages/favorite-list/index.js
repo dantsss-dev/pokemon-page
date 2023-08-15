@@ -17,7 +17,7 @@ export default function FavoritePokemon() {
 
   return (
     <div className="bg-gray-100 h-screen">
-      <div className="flex flex-wrap text-center justify-center w-full bg-red-500 text-center py-6 mb-8 text-gray-100">
+      <div className="flex flex-wrap text-center justify-center w-full bg-red-500 py-6 mb-8 text-gray-100">
         <h1 className="w-full text-3xl font-bold">Favorite Pokemon List</h1>
         <Link
           className="md:w-1/4 mt-4 mx-8 items-center transition duration-500 ease-out bg-transparent hover:bg-white text-white font-semibold hover:text-red-500 container  py-2 border border-white hover:border-transparent rounded "
