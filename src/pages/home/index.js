@@ -1,5 +1,4 @@
 import Button from '@/components/Button'
-import ModalMenu from '@/components/ModalMenu'
 import NavBar from '@/components/NavBar'
 import Image from 'next/legacy/image'
 

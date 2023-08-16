@@ -4,7 +4,7 @@ import Image from 'next/legacy/image'
 
 export default function MenuItemMobile() {
   return (
-    <div className="flex gap-5 flex-wrap justify-center text-center w-full mb-11">
+    <div className="modal-menu-item">
       <Image src={require('@/assets/svg/Logo.svg')} alt="Logo-m" width={138} height={51} />
       {MENU_ITEM.map((item) => (
         <div key={item.title} className="w-full">

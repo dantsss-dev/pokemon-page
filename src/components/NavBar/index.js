@@ -1,7 +1,8 @@
 import Image from 'next/legacy/image'
 import MenuItem from '../MenuItem'
 import { useState } from 'react'
-import ModalMenu from '../ModalMenu'
+import Modal from '../Modal'
+import MenuMobile from '../MenuMobile'
 
 export default function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -23,7 +24,9 @@ export default function NavBar() {
           <Image src={require('@/assets/svg/BurgenBtn.svg')} alt="Logo" layout="responsive" />
         </div>
       </div>
-      {isModalOpen && <ModalMenu closeModal={closeModal} />}
+      {isModalOpen && (
+        <Modal closeModal={closeModal} component={MenuMobile} className="modal-top" />
+      )}
     </nav>
   )
 }
