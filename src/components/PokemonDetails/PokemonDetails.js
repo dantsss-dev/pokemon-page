@@ -29,7 +29,7 @@ export const PokemonDetails = ({ id, name, height, moves, types, stats, weight, 
               className="mt-2 mr-2 p-3 bg-red-400 border-0 text-black float-right text-3xl leading-none font-semibold rounded-full shadow-lg outline-none focus:outline-none ml-auto hover:bg-red-500"
               onClick={() => router.back()}
             >
-              <span className="flex justify-center items-center bg-transparent text-white text-2xl block outline-none focus:outline-none">
+              <span className="flex justify-center items-center bg-transparent text-white text-2xl outline-none focus:outline-none">
                 Go Back
               </span>
             </button>
