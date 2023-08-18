@@ -3,12 +3,8 @@
 @import 'tailwindcss/utilities';
 
 .nav-container {
-  @apply py-4 bg-third flex items-center justify-center;
+  @apply py-4 bg-third flex items-center justify-center px-5;
   box-shadow: 0px 4px 16px 0px rgba(1, 28, 64, 0.2);
-
-  @screen mobile {
-    @apply px-5;
-  }
 
   @screen tablet {
     @apply px-10;

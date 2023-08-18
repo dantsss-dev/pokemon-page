@@ -7,7 +7,7 @@
 }
 
 .home-container {
-  @apply yellow-gradient h-screen;
+  @apply min-h-screen flex flex-col yellow-gradient;
 }
 
 .home-content {
@@ -21,7 +21,7 @@
 }
 
 .text-banner-container {
-  @apply flex flex-col text-center gap-8 items-center;
+  @apply flex flex-col text-center gap-8 items-center mb-5;
   @screen tablet {
     @apply px-[20px];
   }
@@ -48,6 +48,7 @@
 }
 
 .image-banner {
+  @apply w-3/4;
   @screen mobile {
     @apply w-[375px];
   }

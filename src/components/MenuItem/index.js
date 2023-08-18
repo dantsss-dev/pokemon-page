@@ -7,10 +7,10 @@ export default function MenuItem() {
     <div className="menu-item-container">
       {MENU_ITEM.map((item) => (
         <div key={item.title} className="flex flex-col">
-          <Link href={{ pathname: item.url, query: { title: item.title } }} className="menu-text">
+          <Link href={{ pathname: item.url }} className="menu-text">
             {item.title}
           </Link>
-          {router.query.title === item.title && <div className="line-item"></div>}
+          {router.pathname === item.url && <div className="line-item"></div>}
         </div>
       ))}
     </div>
