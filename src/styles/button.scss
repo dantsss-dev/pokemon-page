@@ -28,3 +28,10 @@
     @apply hidden;
   }
 }
+
+.burger-btn-line {
+  @apply w-full h-[4px] rounded-full bg-black;
+  @screen mobile {
+    @apply mb-[6px];
+  }
+}

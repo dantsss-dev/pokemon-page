@@ -3,6 +3,7 @@ import MenuItem from '../MenuItem'
 import { useState } from 'react'
 import Modal from '../Modal'
 import MenuMobile from '../MenuMobile'
+import { BurgerButton } from '../BurgerButton'
 
 export default function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -20,9 +21,7 @@ export default function NavBar() {
           <Image src={require('@/assets/svg/Logo.svg')} alt="Logo" layout="responsive" />
         </div>
         <MenuItem />
-        <div className="burger-btn" onClick={openModal}>
-          <Image src={require('@/assets/svg/BurgenBtn.svg')} alt="Logo" layout="responsive" />
-        </div>
+        <BurgerButton openModal={openModal} />
       </div>
       {isModalOpen && (
         <Modal closeModal={closeModal} component={MenuMobile} className="modal-top" />

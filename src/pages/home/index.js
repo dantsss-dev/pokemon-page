@@ -1,4 +1,4 @@
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 import NavBar from '@/components/NavBar'
 import Image from 'next/legacy/image'
 
@@ -14,7 +14,7 @@ export default function Home() {
           <div className="subtitle-banner">
             You can know the type of Pokemon, its strengths, disadvantages and abilities
           </div>
-          <Button label={'See pokemons'} url={'/pokedex'} slug={'Pokédex'} />
+          <Button label="See pokemons" url="/pokedex" slug="Pokédex" />
         </div>
         <div className="image-banner">
           <Image

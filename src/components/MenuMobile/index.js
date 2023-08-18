@@ -1,5 +1,5 @@
 import Image from 'next/legacy/image'
-import MenuItemMobile from '../MenuItemMobile'
+import { MenuItemMobile } from '../MenuItemMobile'
 
 export default function MenuMobile({ closeModal }) {
   return (
