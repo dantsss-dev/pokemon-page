@@ -1,0 +1,28 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.btn-primary {
+  @apply flex justify-center items-center text-2xl font-bold w-4/5 h-[55px];
+  border-radius: 10px;
+  background: #73d677;
+  box-shadow: 0px -9px 0px 0px rgba(0, 0, 0, 0.18) inset;
+  @screen tablet {
+    @apply w-[231px] h-[66px];
+  }
+}
+
+.btn-close {
+  @apply w-[31px];
+}
+
+.burger-btn {
+  @apply cursor-pointer w-[32px] h-[22px];
+  @screen tablet {
+    @apply hidden;
+  }
+}
+
+.burger-btn-line {
+  @apply w-full h-[4px] rounded-full bg-black mb-[6px];
+}

@@ -1,0 +1,28 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.modal,
+.modal-top {
+  @apply fixed inset-0 z-50 flex justify-center bg-dark bg-opacity-50;
+}
+
+.modal {
+  @apply items-center;
+}
+
+.modal-top {
+  @apply items-start;
+}
+
+.modal-header {
+  @apply flex justify-end;
+}
+
+.modal-content-yellow {
+  @apply flex flex-col yellow-gradient rounded-b-2xl p-6 shadow-lg w-full;
+}
+
+.modal-menu-item {
+  @apply flex gap-5 flex-wrap justify-center text-center w-full mb-11;
+}

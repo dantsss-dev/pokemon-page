@@ -1,0 +1,52 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.nav-container {
+  @apply py-4 bg-third flex items-center justify-center px-5;
+  box-shadow: 0px 4px 16px 0px rgba(1, 28, 64, 0.2);
+
+  @screen tablet {
+    @apply px-10;
+  }
+}
+
+.logo-box {
+  @apply w-[59px] h-[22px];
+  @screen mobile {
+    @apply w-[59px] h-[22px];
+  }
+  @screen tablet {
+    @apply w-[121px] h-[45px];
+  }
+  @screen desktop {
+    @apply w-[157px] h-[63px];
+  }
+}
+
+.menu-item-container {
+  @apply hidden;
+  @screen tablet {
+    @apply flex gap-6;
+  }
+  @screen desktop {
+    @apply gap-16;
+  }
+}
+
+.menu-text {
+  @screen tablet {
+    @apply text-lg;
+  }
+  @screen desktop {
+    @apply text-xl;
+  }
+}
+
+.line-item {
+  @apply mt-2 h-[3px] bg-dark rounded-full;
+}
+
+.bg-modal {
+  @apply bg-dark fixed z-50;
+}

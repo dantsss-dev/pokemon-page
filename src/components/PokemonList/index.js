@@ -77,7 +77,7 @@ export default function PokemonList() {
             </div>
           ) : (
             <div className="bg-gray-200">
-              <div className="flex flex-wrap text-center justify-center w-full bg-red-500 text-center py-6 mb-8 text-gray-100">
+              <div className="flex flex-wrap justify-center w-full bg-red-500 text-center py-6 mb-8 text-gray-100">
                 <h1 className="w-full text-3xl font-bold">
                   Welcome {userName.name} {userName.last_name}
                 </h1>
