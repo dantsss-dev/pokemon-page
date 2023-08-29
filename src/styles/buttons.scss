@@ -1,0 +1,70 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.btn-primary {
+  @apply flex justify-center items-center text-2xl font-bold w-4/5 h-[55px];
+  border-radius: 10px;
+  background: #73d677;
+  box-shadow: 0px -9px 0px 0px rgba(0, 0, 0, 0.18) inset;
+  @screen tablet {
+    @apply w-[231px] h-[66px];
+  }
+}
+
+.btn-close {
+  @apply w-[31px];
+}
+
+.burger-btn {
+  @apply cursor-pointer w-[32px] h-[22px];
+  @screen tablet {
+    @apply hidden;
+  }
+}
+
+.burger-btn-line {
+  @apply w-full h-[4px] rounded-full bg-black mb-[6px];
+}
+
+.checkbox-label {
+  @apply flex flex-row items-center gap-2 cursor-pointer;
+}
+
+.checkbox {
+  @apply appearance-none w-3 h-3 border-[1.5px] font-pro border-black bg-white;
+  @apply checked:bg-danger cursor-pointer;
+}
+
+.label-type {
+  box-shadow: 0px -2px 0px 0px rgba(0, 0, 0, 0.18) inset;
+}
+
+.dropdown-container {
+  @apply hidden items-center justify-center;
+  @screen tablet {
+    @apply flex;
+  }
+}
+
+.dropdown-btn {
+  @apply inline-flex justify-center w-[136px] rounded-md shadow-md px-4 bg-white font-pro text-gray-700 hover:bg-gray-200 capitalize;
+}
+
+.btn-apply {
+  @apply flex min-w-[66px] w-[66px] py-[2px] px-2 justify-center align-top capitalize text-center text-xs rounded-full;
+
+  @screen tablet {
+    @apply text-base w-[80px];
+  }
+
+  @screen desktop {
+  }
+}
+
+.btn-filters {
+  @apply flex justify-center w-[77px] rounded-md shadow-md px-4 bg-white text-xs font-pro text-gray-700 hover:bg-gray-200 capitalize;
+  @screen tablet {
+    @apply hidden;
+  }
+}

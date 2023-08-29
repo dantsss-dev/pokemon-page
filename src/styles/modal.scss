@@ -26,3 +26,13 @@
 .modal-menu-item {
   @apply flex gap-5 flex-wrap justify-center text-center w-full mb-11;
 }
+
+.range-container {
+  @apply flex flex-col absolute py-4 mt-2 gap-5 w-fit px-8 rounded-xl shadow-lg drop-shadow-xl bg-white-light z-40;
+  @screen tablet {
+    @apply -left-36;
+  }
+  @screen desktop {
+    @apply left-0;
+  }
+}

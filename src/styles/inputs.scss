@@ -1,0 +1,18 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.textbox {
+  @apply flex w-24 bg-white border-slate-200 text-xs py-2 rounded-full shadow-md;
+  @screen tablet {
+    @apply pl-3 py-1 w-40 text-base;
+  }
+}
+
+.label-warning {
+  @apply text-danger font-bold text-sm;
+}
+
+.line {
+  @apply w-[16px] h-[2px] bg-black rounded-full;
+}

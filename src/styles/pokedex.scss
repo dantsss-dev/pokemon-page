@@ -1,0 +1,51 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.pokedex-container {
+  @apply flex flex-col items-center pt-7  mb-7 gap-7;
+  @screen tablet {
+    @apply gap-[70px] px-6;
+  }
+  @screen desktop {
+    @apply pt-[72px];
+  }
+}
+
+.pokedex-header {
+  @apply flex flex-col items-center w-5/6 gap-7;
+  @screen tablet {
+    @apply tablet:w-[90%];
+  }
+}
+
+.pokedex-text-header {
+  @apply text-center text-2xl tracking-[3px];
+  @screen tablet {
+    @apply text-4xl;
+  }
+}
+
+.pokedex-text-header span {
+  @apply font-bold;
+}
+
+.pokedex-controls-container {
+  @apply flex flex-wrap w-full items-start justify-center gap-4;
+  @screen tablet {
+    @apply max-w-[1088px];
+  }
+  @screen desktop {
+    @apply gap-9;
+  }
+}
+
+.pokemon-searchbar {
+  @apply w-full bg-white border-slate-200 text-xs placeholder-black placeholder-opacity-80 pl-[18px] py-2 rounded-full shadow-md;
+  @screen tablet {
+    @apply py-3 text-base;
+  }
+  @screen desktop {
+    @apply py-4;
+  }
+}

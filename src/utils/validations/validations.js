@@ -12,3 +12,5 @@ export const hasValidateNickname = (nickname, favPokemon) => {
     alert('Fill the information.')
   }
 }
+
+export const isFromLower = (from, to) => from <= to

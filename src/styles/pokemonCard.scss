@@ -1,0 +1,64 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.card-container {
+  @apply flex justify-center w-full capitalize;
+
+  @screen tablet {
+    @apply w-1/2;
+  }
+
+  @screen desktop {
+    @apply w-1/3;
+  }
+}
+
+.pokemon-card {
+  @apply flex flex-row w-5/6 max-w-[352px] items-start justify-between pl-6 rounded-lg bg-white shadow-lg;
+
+  @screen tablet {
+    @apply w-[93%];
+  }
+}
+
+.card-info-container {
+  @apply flex flex-col pt-2 w-[35%] z-10 gap-2 mb-3 bg-white;
+  @screen tablet {
+    @apply w-[30%];
+  }
+}
+
+.pokemon-name {
+  @apply text-lg font-bold mb-3 break-words;
+}
+
+.stat-container {
+  @apply flex flex-col justify-center items-center gap-[6px];
+}
+
+.stat-value {
+  @apply flex w-[38px] h-[36px] justify-center items-center border-[3px] border-black rounded-full text-[15px];
+}
+
+.stat-label {
+  @apply text-xs;
+}
+
+.type-container {
+  @apply flex min-w-[60px] w-[60px] justify-center align-top capitalize text-center text-xs rounded-xl px-2 label-type;
+}
+
+.pokemon-image-container {
+  @apply relative flex w-[65%] h-full justify-center items-center rounded-r-lg overflow-hidden;
+  @screen tablet {
+    @apply w-[70%];
+  }
+}
+
+.pokemon-image {
+  @apply absolute top-0 w-[180px] h-[180px];
+  @screen tablet {
+    @apply w-[200px] h-[200px];
+  }
+}
